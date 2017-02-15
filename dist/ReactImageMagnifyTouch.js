@@ -21,6 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ReactImageMagnifyTouch = function ReactImageMagnifyTouch(_ref) {
     var className = _ref.className,
+        enlargedImageContainerClassName = _ref.enlargedImageContainerClassName,
         enlargedImageContainerStyle = _ref.enlargedImageContainerStyle,
         enlargedImageClassName = _ref.enlargedImageClassName,
         enlargedImageStyle = _ref.enlargedImageStyle,
@@ -74,6 +75,7 @@ var ReactImageMagnifyTouch = function ReactImageMagnifyTouch(_ref) {
             }, imageStyle)
         }),
         _react2.default.createElement(_EnlargedImage2.default, {
+            containerClassName: enlargedImageContainerClassName,
             containerStyle: enlargedImageContainerStyle,
             cursorOffset: cursorOffset,
             fadeDurationInMs: fadeDurationInMs,
@@ -96,6 +98,7 @@ var ImageShape = exports.ImageShape = _react.PropTypes.shape({
 
 ReactImageMagnifyTouch.propTypes = {
     className: _react.PropTypes.string,
+    enlargedImageContainerClassName: _react.PropTypes.string,
     enlargedImageContainerStyle: _react.PropTypes.object,
     enlargedImageClassName: _react.PropTypes.string,
     enlargedImageStyle: _react.PropTypes.object,
