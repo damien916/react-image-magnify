@@ -1,6 +1,6 @@
 {
   "name": "react-image-magnify",
-  "version": "1.4.7",
+  "version": "1.5.0-1",
   "description": "A React image magnification component for desktop and touch.",
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "dist"
   ],
   "scripts": {
-    "prepublish": "babel --plugins 'transform-es2015-modules-umd' src --out-dir ./dist",
+    "prepublish": "babel src --out-dir ./dist",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
     "testonly": "mocha --require scripts/mocha_runner test/*.spec.js",
