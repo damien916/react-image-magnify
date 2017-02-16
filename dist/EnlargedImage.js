@@ -63,7 +63,8 @@ exports.default = _react2.default.createClass({
         isHovering: _react.PropTypes.bool,
         isRenderOnDemand: _react.PropTypes.bool,
         largeImage: ImageShape,
-        smallImage: ImageShape
+        smallImage: ImageShape,
+        imagePosition: _react.PropTypes.string
     },
 
     componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
@@ -111,7 +112,8 @@ exports.default = _react2.default.createClass({
             imageStyle = _props.imageStyle,
             isRenderOnDemand = _props.isRenderOnDemand,
             largeImage = _props.largeImage,
-            smallImage = _props.smallImage;
+            smallImage = _props.smallImage,
+            imagePosition = _props.imagePosition;
         var _state = this.state,
             isTransitionEntering = _state.isTransitionEntering,
             isTransitionActive = _state.isTransitionActive,
@@ -147,14 +149,32 @@ exports.default = _react2.default.createClass({
             isVisible = false;
         }
 
+        var imgDataHover = void 0;
         var defaultContainerStyle = {
-            marginLeft: '10px',
             position: 'absolute',
-            left: '100%',
             top: '0px',
-            border: '1px solid #d6d6d6',
+
             overflow: 'hidden'
         };
+
+        switch (imagePosition) {
+            case 'over':
+                imgDataHover = true;
+                defaultContainerStyle = Object.assign({}, defaultContainerStyle, {
+                    left: '0px'
+                });
+                break;
+
+            case 'beside':
+            default:
+                imgDataHover = false;
+                defaultContainerStyle = Object.assign({}, defaultContainerStyle, {
+                    left: '100%',
+                    marginLeft: '10px',
+                    border: '1px solid #d6d6d6'
+                });
+                break;
+        }
 
         var computedContainerStyle = {
             width: smallImage.width,
@@ -180,7 +200,7 @@ exports.default = _react2.default.createClass({
                 key: 'enlarged',
                 style: Object.assign({}, defaultContainerStyle, containerStyle, computedContainerStyle)
             },
-            _react2.default.createElement('img', _extends({ 'data-hover': 'false' }, {
+            _react2.default.createElement('img', _extends({ 'data-hover': imgDataHover }, {
                 alt: largeImage.alt,
                 className: imageClassName,
                 src: largeImage.src,

@@ -53,14 +53,30 @@ var ReactImageMagnify = function ReactImageMagnify(_ref) {
         largeImage = _ref.largeImage,
         lensStyle = _ref.lensStyle,
         smallImage = _ref.smallImage,
-        style = _ref.style;
+        style = _ref.style,
+        enlargedImagePosition = _ref.enlargedImagePosition;
 
 
     var cursorOffset = {
         x: Math.round(smallImage.width / largeImage.width * smallImage.width / 2),
         y: Math.round(smallImage.height / largeImage.height * smallImage.height / 2)
     };
-    var defaultLensStyle = { backgroundColor: 'rgba(0,0,0,.4)' };
+
+    var defaultLensStyle = {};
+
+    switch (enlargedImagePosition) {
+        case 'over':
+            defaultLensStyle = Object.assign({}, defaultLensStyle, {});
+            break;
+
+        case 'beside':
+        default:
+            defaultLensStyle = Object.assign({}, defaultLensStyle, {
+                backgroundColor: 'rgba(0,0,0,.4)'
+            });
+            break;
+    }
+
     var compositLensStyle = Object.assign({}, defaultLensStyle, lensStyle);
 
     return _react2.default.createElement(
@@ -138,7 +154,8 @@ var ReactImageMagnify = function ReactImageMagnify(_ref) {
                 imageClassName: enlargedImageClassName,
                 imageStyle: enlargedImageStyle,
                 largeImage: largeImage,
-                smallImage: smallImage
+                smallImage: smallImage,
+                imagePosition: enlargedImagePosition
             })
         )
     );
@@ -166,13 +183,15 @@ ReactImageMagnify.propTypes = {
     largeImage: ImageShape,
     lensStyle: _react.PropTypes.object,
     smallImage: ImageShape,
-    style: _react.PropTypes.object
+    style: _react.PropTypes.object,
+    enlargedImagePosition: _react.PropTypes.string
 };
 
 ReactImageMagnify.defaultProps = {
     fadeDurationInMs: 300,
     hoverDelayInMs: 250,
-    hoverOffDelayInMs: 150
+    hoverOffDelayInMs: 150,
+    enlargedImagePosition: 'beside'
 };
 
 exports.default = ReactImageMagnify;

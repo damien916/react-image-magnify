@@ -33,7 +33,8 @@ var ReactImageMagnifyTouch = function ReactImageMagnifyTouch(_ref) {
         pressDuration = _ref.pressDuration,
         pressMoveThreshold = _ref.pressMoveThreshold,
         smallImage = _ref.smallImage,
-        style = _ref.style;
+        style = _ref.style,
+        enlargedImagePosition = _ref.enlargedImagePosition;
 
 
     var cursorOffset = {
@@ -83,7 +84,8 @@ var ReactImageMagnifyTouch = function ReactImageMagnifyTouch(_ref) {
             imageStyle: Object.assign({}, enlargedImageStyle, { pointerEvents: 'none' }),
             isRenderOnDemand: false,
             largeImage: largeImage,
-            smallImage: smallImage
+            smallImage: smallImage,
+            imagePosition: enlargedImagePosition
         })
     );
 };
@@ -110,11 +112,13 @@ ReactImageMagnifyTouch.propTypes = {
     pressDuration: _react.PropTypes.number,
     pressMoveThreshold: _react.PropTypes.number,
     smallImage: ImageShape,
-    style: _react.PropTypes.object
+    style: _react.PropTypes.object,
+    enlargedImagePosition: _react.PropTypes.string
 };
 
 ReactImageMagnifyTouch.defaultProps = {
-    fadeDurationInMs: 500
+    fadeDurationInMs: 500,
+    enlargedImagePosition: 'over'
 };
 
 exports.default = ReactImageMagnifyTouch;
